@@ -1,0 +1,23 @@
+<div style="display: flex; justify-content: center;">
+  <div style="display: flex; flex-direction: column; min-width: 60%; max-width: 80%;">
+    <div>
+      <img src={{agency.logo}} style="position: absolute; float: left;width: 100px;">
+      <h3 style="text-align: center; text-decoration: underline">{{agency.companyName}} - {{agency.city}}</h3>
+    </div>
+    <div style="display: flex; flex-direction: column;flex-wrap: nowrap; border-radius: 20px; border: 1px solid; padding: 10px; text-align: center;">
+      <h4 style="text-decoration: underline">Pôle {{pole.name}}</h4>
+      <div style="border: 1px solid; border-radius: 10px; padding: 5px; margin: 5px; ">
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin scelerisque ante dolor, ac malesuada augue finibus volutpat. Nunc nec arcu eros. Maecenas venenatis nulla in elit tristique, sed consequat odio ultricies. Donec in libero gravida, placerat nisi non, ultricies ante. Aliquam erat volutpat. Quisque id posuere nulla, eget mattis mauris. Sed est nunc, luctus vitae sodales vitae, eleifend sed velit. Curabitur at rhoncus mi. Ut convallis vitae nisl vulputate interdum. Etiam eget rutrum ex. Pellentesque at volutpat dui, nec malesuada velit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis consectetur vel enim eget blandit. Etiam mollis eleifend dapibus. Suspendisse sagittis eu nisl ut aliquet. Vivamus sit amet est dictum, luctus ligula at, rhoncus ipsum.
+        </p>
+      </div>
+      <h5>Liste des projets du pôle :</h5>
+      <div style="border: solid 1px;">
+        <div *ngFor="let project of projects" (click)="changeSelectedProject(project.id)" [style.backgroundColor]="getStyle(project.id)">Pôle {{project.name}}</div>
+      </div>
+      <div style="display: flex; flex-direction: column; text-align: center;">
+        <div style="margin: 10px;"><button routerLink="/project/{{selectedProjectId}}">Voir le projet</button></div>
+      </div>
+    </div>
+  </div>
+</div>

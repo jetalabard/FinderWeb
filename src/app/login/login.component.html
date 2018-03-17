@@ -1,0 +1,15 @@
+<div style="display: flex; justify-content: center;">
+  <div style="margin-top: 80px; display: flex; flex-direction: column; align-items: center; width: 30%; border-radius: 20px; border: 1px solid; padding: 10px;">
+    <div>
+      <img src="https://logomarts.files.wordpress.com/2015/07/logo-example2.jpg" style="width: 150px;">
+    </div>
+    <input type="text" placeholder="Email" [(ngModel)]="mail">
+    <br>
+    <input type="text" placeholder="Mot de passe" [(ngModel)]="password">
+    <br>
+    <button (click)="login()">Connexion</button>
+    <br>
+    <a routerLink="/lostPassword" style="text-decoration: underline;">Mot de passe oublié ?</a>
+    <a routerLink="/newCompany" style="text-decoration: underline;">Nouvelle société ?</a>
+  </div>
+</div>

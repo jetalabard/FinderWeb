@@ -1,0 +1,42 @@
+<div style="display: flex; flex-direction: column; align-items: center;">
+  <div #gmap style="margin-top: 50px; margin-bottom: 50px; width:100%;height:600px"></div>
+  <div style="display: flex; flex-direction: column; align-items: center;">
+    <div>
+      <input type="text" placeholder="Recherche">
+    </div>
+    <div style="display: flex">
+      <div style="margin: 10px;">
+        <SELECT name="pays">
+          <OPTION>Pays
+          <OPTION>France
+          <OPTION>Allemagne
+          <OPTION>Irlande
+          <OPTION>Suisse
+        </SELECT>
+      </div>
+      <div style="margin: 10px;">
+        <SELECT name="ville">
+          <OPTION>Ville
+          <OPTION>Clermont
+          <OPTION>Paris
+          <OPTION>Lyon
+          <OPTION>Genève
+        </SELECT>
+      </div>
+    </div>
+
+    <div>
+      <h5 style="text-align: center">Résultats</h5>
+      <div *ngFor="let agency of agencies" style="display: flex; align-items: center; justify-content: space-between; border: 1px solid; padding: 4px; margin: 10px;">
+        <div><img src={{agency.logo}} style="width: 100px;"></div>
+        <div style="display: flex">
+          <div style="margin: 4px;">{{agency.companyName}}</div>
+          |
+          <div style="margin: 4px;">{{agency.city}}</div>
+        </div>
+        <div><button routerLink="/agency/{{agency.id}}">Visiter</button></div>
+      </div>
+    </div>
+  </div>
+</div>
+

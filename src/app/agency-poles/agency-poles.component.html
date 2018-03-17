@@ -1,0 +1,17 @@
+<div style="display: flex; justify-content: center;">
+  <div style="display: flex; flex-direction: column; min-width: 60%; max-width: 80%;">
+    <div>
+      <img src={{agency.logo}} style="position: absolute; float: left;width: 100px;">
+      <h3 style="text-align: center; text-decoration: underline">{{agency.companyName}} - {{agency.city}}</h3>
+    </div>
+    <div style="display: flex; flex-direction: column;flex-wrap: nowrap; border-radius: 20px; border: 1px solid; padding: 10px;">
+      <h4>Liste des pôles de l'agence :</h4>
+      <div style="border: solid 1px;">
+        <div *ngFor="let pole of poles" (click)="changeSelectedPole(pole.id)" [style.backgroundColor]="getStyle(pole.id)">Pôle {{pole.name}}</div>
+      </div>
+      <div style="display: flex; flex-direction: column; text-align: center;">
+        <div style="margin: 10px;"><button routerLink="/pole/{{selectedPoleId}}">Valider</button></div>
+      </div>
+    </div>
+  </div>
+</div>
