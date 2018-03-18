@@ -1,5 +1,5 @@
 <div style="display: flex; flex-direction: column; align-items: center;">
-  <div #gmap style="margin-top: 50px; margin-bottom: 50px; width:100%;height:600px"></div>
+  <div #gmap style="margin-top: 50px; margin-bottom: 50px; width:80%;height:600px"></div>
   <div style="display: flex; flex-direction: column; align-items: center;">
     <div>
       <input type="text" placeholder="Recherche">
@@ -27,7 +27,7 @@
 
     <div>
       <h5 style="text-align: center">Résultats</h5>
-      <div *ngFor="let agency of agencies" style="display: flex; align-items: center; justify-content: space-between; border: 1px solid; padding: 4px; margin: 10px;">
+      <div *ngFor="let agency of agencies" style="display: flex; align-items: center; justify-content: space-between; border: 1px solid;border-color: #D81945; padding: 4px; margin: 10px;">
         <div><img src={{agency.logo}} style="width: 100px;"></div>
         <div style="display: flex">
           <div style="margin: 4px;">{{agency.companyName}}</div>
