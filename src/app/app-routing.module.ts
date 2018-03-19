@@ -10,6 +10,11 @@ import {AgencyPolesComponent} from "./agency-poles/agency-poles.component";
 import {PoleComponent} from "./pole/pole.component";
 import {ProjectComponent} from "./project/project.component";
 import {PersonComponent} from "./person/person.component";
+import {MyAgenciesComponent} from "./my-agencies/my-agencies.component";
+import {ActivitiesPolesComponent} from "./activities-poles/activities-poles.component";
+import {CollaboratorComponent} from "./collaborator/collaborator.component";
+import {MyAccountComponent} from "./my-account/my-account.component";
+import {AgencyPlanComponent} from "./agency-plan/agency-plan.component";
 
 const routes: Routes = [
   { path: '', redirectTo: '/about', pathMatch: 'full'},
@@ -22,7 +27,12 @@ const routes: Routes = [
   { path: 'agencyPoles/:id', component: AgencyPolesComponent },
   { path: 'pole/:id', component: PoleComponent },
   { path: 'project/:id', component: ProjectComponent },
-  { path: 'person/:id', component: PersonComponent }
+  { path: 'person/:id', component: PersonComponent },
+  { path: 'myAgencies', component: MyAgenciesComponent },
+  { path: 'activitiesPoles', component: ActivitiesPolesComponent },
+  { path: 'collaborator', component: CollaboratorComponent },
+  { path: 'myAccount', component: MyAccountComponent },
+  { path: 'agencyPlan/:id', component: AgencyPlanComponent }
 ];
 
 @NgModule({
