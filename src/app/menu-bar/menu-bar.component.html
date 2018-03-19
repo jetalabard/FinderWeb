@@ -1,20 +1,20 @@
-<div style="border-bottom: 2px solid; display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+<div style="border-bottom: 2px solid;border-color: #D81945; display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
   <div style="display: flex;">
-    <div *ngIf="isLogged" routerLink="/map" style="border-right: 1px solid; padding: 0px 10px; cursor: pointer;">Map</div>
-    <div *ngIf="isLogged" routerLink="/myAgencies" style="border-right: 1px solid; padding: 0px 10px; cursor: pointer;">Mes agences</div>
-    <div *ngIf="isLogged" routerLink="/activitiesPoles" style="border-right: 1px solid; padding: 0px 10px; cursor: pointer;">Pôles d'activités</div>
-    <div *ngIf="isLogged" routerLink="/collaborator" style="border-right: 1px solid; padding: 0px 10px; cursor: pointer;">Collaborateurs</div>
-    <div routerLink="/about" style="border-right: 1px solid; padding: 0px 10px; cursor: pointer;">A propos</div>
+    <div *ngIf="isLogged" routerLink="/map" style="border-right: 1px solid;border-color: #D81945; padding: 0px 10px; cursor: pointer;">Map</div>
+    <div *ngIf="isLogged" routerLink="/myAgencies" style="border-right: 1px solid;border-color: #D81945; padding: 0px 10px; cursor: pointer;">Mes agences</div>
+    <div *ngIf="isLogged" routerLink="/activitiesPole" style="border-right: 1px solid;border-color: #D81945; padding: 0px 10px; cursor: pointer;">Pôles d'activités</div>
+    <div *ngIf="isLogged" routerLink="/collaborator" style="border-right: 1px solid;border-color: #D81945; padding: 0px 10px; cursor: pointer;">Collaborateurs</div>
+    <div routerLink="/about" style="border-right: 1px solid;border-color: #D81945; padding: 0px 10px; cursor: pointer;">A propos</div>
   </div>
   <div *ngIf="isLogged; else elseBlock" style="display: flex; align-items: center;">
-    <div style="border-right: 2px solid;">
-      <img routerLink="/myAccount" src="http://www.clker.com/cliparts/D/W/n/h/n/W/house-logo-hi.png" style="width: 28px; margin: 5px;">
+    <div style="border-right: 2px solid;border-color: #D81945;">
+      <img routerLink="/myAccount" src="assets/images/Logo1.JPG" style="width: 45px; margin: 5px;">
     </div>
     <div routerLink="/myAccount" style="cursor: pointer; padding: 0px 10px;">Hello</div>
   </div>
   <ng-template #elseBlock style="display: flex; align-items: center;">
-    <div style="border-right: 2px solid;">
-      <img src="https://logomarts.files.wordpress.com/2015/07/logo-example2.jpg" style="width: 80px;">
+    <div style="border-right: 2px solid;border-color: #D81945;">
+      <img src="/Logo1.JPG" style="width: 80px;">
     </div>
     <div routerLink="/login" style="cursor: pointer; padding-left: 20px;">Connexion</div>
   </ng-template>

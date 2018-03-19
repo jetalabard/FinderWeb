@@ -5,7 +5,7 @@ export class Agency {
   id: number;
   companyName: string;
   city: string;
-  logo: string = "https://logomarts.files.wordpress.com/2015/07/logo-example2.jpg";
+  logo: string = "assets/images/soprasteria.jpeg";
   lat: number;
   long: number;
   poles: number[];
