@@ -1,0 +1,16 @@
+<div style="display: flex; justify-content: center;">
+  <div style="display: flex; flex-direction: column; min-width: 80%;">
+    <div>
+      <img src={{agency.logo}} style="position: absolute; float: left;width: 100px;">
+      <h2 style="text-align: center; text-decoration: underline">{{agency.companyName}} - {{agency.city}}</h2>
+    </div>
+    <div style="display: flex; border-radius: 20px; border: 1px solid;">
+      <div style="display: flex; flex-direction: column;flex-wrap: nowrap;  padding: 10px; width: 30%; border-right: solid 1px;">
+        <div *ngFor="let stage of agency.stages" (click)="changeSelectedStage(stage)" [style.backgroundColor]="getStyle(stage)">Plan {{stage.name}}</div>
+      </div>
+      <div style="width: 70%; padding: 20px; display: flex; flex-direction: column; align-items: center;">
+        <img src="{{selectedStage.picture}}" style="width: 500px;">
+      </div>
+    </div>
+  </div>
+</div>

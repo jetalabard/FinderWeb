@@ -1,0 +1,47 @@
+<div style="display: flex; justify-content: center;">
+  <div style="display: flex; flex-direction: column; min-width: 60%; max-width: 80%;">
+    <div>
+      <h3 style="text-align: center; text-decoration: underline">Mon Profil</h3>
+    </div>
+    <div style="border-radius: 20px; border: 1px solid;">
+      <div style="display: flex; flex-direction: column; flex-wrap: nowrap; align-items: center; padding: 10px;">
+        <h4 style="text-align: center;">Informations générales</h4>
+        <div style="margin-bottom: 10px; display: flex;">
+          <div style="margin-right: 15px;">
+            <div style="margin: 5px;">Prénom : </div>
+            <div style="margin: 5px;">Nom : </div>
+            <div style="margin: 7px;">Mail : </div>
+            <div style="margin: 7px;">Photo : </div>
+          </div>
+          <div>
+            <div style="margin: 5px;">{{person.firstname}}</div>
+            <div style="margin: 5px;">{{person.name}}</div>
+            <div style="margin: 5px;"><input type="text" [(ngModel)]="newMail"></div>
+            <div style="margin: 5px;"><button>Importer</button></div>
+          </div>
+        </div>
+      </div>
+      <div style="display: flex; flex-direction: column; flex-wrap: nowrap; align-items: center; padding: 10px;">
+        <h4 style="text-align: center;">Mot de passe</h4>
+        <div style="margin-bottom: 10px; display: flex;">
+          <div style="margin-right: 15px;">
+            <div style="margin: 7px;">Ancien : </div>
+            <div style="margin: 7px;">Nouveau : </div>
+            <div style="margin: 7px;">Confirmation : </div>
+          </div>
+
+          <div>
+            <div style="margin: 5px;"><input type="password" placeholder="Ancien mot de passe" [(ngModel)]="oldPassword"></div>
+            <div style="margin: 5px;"><input type="password" placeholder="Nouveau mot de passe" [(ngModel)]="newPassword"></div>
+            <div style="margin: 5px;"><input type="password" placeholder="Nouveau mot de passe" [(ngModel)]="newPasswordConfirm"></div>
+          </div>
+        </div>
+      </div>
+      <div style="display: flex; justify-content: center;">
+        <div style="margin: 15px;"><button (click)="save()">Enregistrer</button></div>
+        <div style="margin: 15px;"><button (click)="cancel()">Annuler</button></div>
+      </div>
+      <div style="margin: 10px; text-align: center;" [style.color]="colorMessage">{{message}}</div>
+    </div>
+  </div>
+</div>

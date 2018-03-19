@@ -11,7 +11,7 @@
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin scelerisque ante dolor, ac malesuada augue finibus volutpat. Nunc nec arcu eros. Maecenas venenatis nulla in elit tristique, sed consequat odio ultricies. Donec in libero gravida, placerat nisi non, ultricies ante. Aliquam erat volutpat. Quisque id posuere nulla, eget mattis mauris. Sed est nunc, luctus vitae sodales vitae, eleifend sed velit. Curabitur at rhoncus mi. Ut convallis vitae nisl vulputate interdum. Etiam eget rutrum ex. Pellentesque at volutpat dui, nec malesuada velit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis consectetur vel enim eget blandit. Etiam mollis eleifend dapibus. Suspendisse sagittis eu nisl ut aliquet. Vivamus sit amet est dictum, luctus ligula at, rhoncus ipsum.
         </p>
       </div>
-      <div style="margin: 10px;"><button routerLink="/plan/{{agency.id}}">Plan d'équipe</button></div>
+      <div style="margin: 10px;"><button routerLink="/agencyPlan/{{agency.id}}">Plan d'équipe</button></div>
       <h5>Liste des personnes du projet :</h5>
       <div style="border: solid 1px;">
         <div *ngFor="let person of persons" (click)="changeSelectedPerson(person.id)" [style.backgroundColor]="getStyle(person.id)">{{person.firstname}} {{person.name}} - {{person.role}}</div>

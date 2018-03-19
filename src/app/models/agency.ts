@@ -1,3 +1,5 @@
+import {Stage} from "./stage";
+
 export class Agency {
 
   id: number;
@@ -7,6 +9,7 @@ export class Agency {
   lat: number;
   long: number;
   poles: number[];
+  stages: Stage[] = [];
 
   constructor(id, companyName, city, lat, long)
   {

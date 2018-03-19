@@ -1,0 +1,18 @@
+<div style="display: flex; justify-content: center;">
+  <div style="min-width: 60%; max-width: 80%;">
+    <h2 style="text-align: center; text-decoration: underline">Mes pôles d'activités</h2>
+    <div *ngFor="let agency of agencyPole">
+      <div *ngFor="let pole of agency.poles" style="display: flex; align-items: center; justify-content: space-between; border: 1px solid; padding: 4px; margin: 10px;">
+        <div><img src={{agency.agency.logo}} style="width: 100px;"></div>
+        <div style="display: flex">
+          <div style="margin: 4px;">{{agency.agency.companyName}}</div>
+          |
+          <div style="margin: 4px;">{{agency.agency.city}}</div>
+          |
+          <div style="margin: 4px;">Pôle {{pole.name}}</div>
+        </div>
+        <div><button routerLink="/agency/{{pole.id}}">Visiter</button></div>
+      </div>
+    </div>
+  </div>
+</div>
