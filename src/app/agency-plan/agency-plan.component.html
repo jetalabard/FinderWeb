@@ -5,11 +5,31 @@
       <h2 style="text-align: center; text-decoration: underline">{{agency.companyName}} - {{agency.city}}</h2>
     </div>
     <div style="display: flex; border-radius: 20px; border: 1px solid;">
-      <div style="display: flex; flex-direction: column;flex-wrap: nowrap;  padding: 10px; width: 30%; border-right: solid 1px;">
-        <div *ngFor="let stage of agency.stages" (click)="changeSelectedStage(stage)" [style.backgroundColor]="getStyle(stage)">Plan {{stage.name}}</div>
+      <div style="display: flex; flex-direction: column; justify-content: space-between; padding: 10px; width: 30%; border-right: solid 1px;">
+        <div style="display: flex; flex-direction: column;flex-wrap: nowrap;">
+          <div *ngFor="let stage of agency.stages" (click)="changeSelectedStage(stage)" [style.backgroundColor]="getStyle(stage)">Plan {{stage.name}}</div>
+        </div>
+        <div>
+          <div>Pôle <div style="display: inline-block; background-color: blue; width: 12px; height: 12px; border-radius: 10px;"></div></div>
+          <div>Projet <div style="display: inline-block; background-color: red; width: 12px; height: 12px; border-radius: 10px;"></div></div>
+          <div>Personne <div style="display: inline-block; background-color: green; width: 12px; height: 12px; border-radius: 10px;"></div></div>
+          <div>Autre <div style="display: inline-block; background-color: yellow; width: 12px; height: 12px; border-radius: 10px;"></div></div>
+        </div>
       </div>
       <div style="width: 70%; padding: 20px; display: flex; flex-direction: column; align-items: center;">
-        <img src="{{selectedStage.picture}}" style="width: 500px;">
+        <div style="position: relative;">
+          <img src="{{selectedStage.picture}}" style="width: 500px;">
+          <div *ngFor="let marker of selectedStage.markers" [ngStyle]="{'top.%': marker.y,'right.%': marker.x, 'background-color': getInfoMarker(marker)}" style="position: absolute;">
+            <div *ngIf="selectedMarker == null || selectedMarker.id != marker.id" (click)="changeSelectedMarker(marker)" style="width: 12px; height: 12px; border-radius: 10px;"></div>
+            <div [ngStyle]="{'display': getStyleDisplay(marker)}" style="min-width: 100px; display: none; padding: 5px;">
+              <div style="display: flex; justify-content: flex-end;">
+                <img (click)="changeSelectedMarker(null)" style="width: 20px; height: 20px;" src="https://icon-icons.com/icons2/510/PNG/512/close_icon-icons.com_50420.png">
+              </div>
+              <strong>{{marker.name}}</strong>
+              <div *ngIf="getInfoMarker(marker,'link') != ''" style="margin: 10px;"><button routerLink="{{getInfoMarker(marker,'link')}}">Voir</button></div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
