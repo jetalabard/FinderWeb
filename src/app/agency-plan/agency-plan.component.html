@@ -20,13 +20,13 @@
         <div style="position: relative;">
           <img src="{{selectedStage.photo}}" style="width: 500px;">
           <div *ngFor="let marker of selectedStage.objectMarkers" [ngStyle]="{'top.%': marker.posY,'right.%': marker.posX, 'background-color': getInfoMarker(marker)}" style="position: absolute;">
-            <div *ngIf="selectedMarker == null || selectedMarker._id != marker._id" (click)="changeSelectedMarker(marker)" style="width: 12px; height: 12px; border-radius: 10px;"></div>
-            <div [ngStyle]="{'display': getStyleDisplay(marker)}" style="min-width: 100px; display: none; padding: 5px;">
+            <div *ngIf="selectedMarker == null || selectedMarker._id != marker._id" (click)="changeSelectedMarker(marker)" style="width: 12px; height: 12px; border-radius: 5px;"></div>
+            <div [ngStyle]="{'display': getStyleDisplay(marker), 'border-color':getInfoMarker(marker)}" style="min-width: 100px; display: none; margin: 1px; background-color: white;border-radius: 5px;">
               <div style="display: flex; justify-content: flex-end;">
                 <img (click)="changeSelectedMarker(null)" style="width: 20px; height: 20px;" src="https://icon-icons.com/icons2/510/PNG/512/close_icon-icons.com_50420.png">
               </div>
               <strong>{{marker.name}}</strong>
-              <div *ngIf="getInfoMarker(marker,'link') != ''" style="margin: 10px;"><button routerLink="{{getInfoMarker(marker,'link')}}">Voir</button></div>
+              <div *ngIf="getInfoMarker(marker,'link') != ''" style="padding:3px"><button routerLink="{{getInfoMarker(marker,'link')}}">Voir</button></div>
             </div>
           </div>
         </div>

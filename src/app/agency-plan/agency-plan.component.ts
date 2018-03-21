@@ -51,6 +51,7 @@ export class AgencyPlanComponent implements OnInit {
 
 
     //this.changeSelectedStage(this.agency.stages[0]);
+
     //this.changeSelectedMarker(-1);
     this.route.params.subscribe( params => this.getAgencyAndStagesAndMarkers(params.id));
   }
