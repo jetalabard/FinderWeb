@@ -5,13 +5,13 @@
       <div *ngFor="let pole of agency.poles" style="display: flex; align-items: center; justify-content: space-between; border: 1px solid; padding: 4px; margin: 10px;">
         <div><img src={{agency.agency.logo}} style="width: 100px;"></div>
         <div style="display: flex">
-          <div style="margin: 4px;">{{agency.agency.companyName}}</div>
+          <div style="margin: 4px;">{{agency.agency.name}}</div>
           |
           <div style="margin: 4px;">{{agency.agency.city}}</div>
           |
           <div style="margin: 4px;">Pôle {{pole.name}}</div>
         </div>
-        <div><button routerLink="/agency/{{pole.id}}">Visiter</button></div>
+        <div><button routerLink="/pole/{{agency.agency._id}}/{{pole._id}}">Visiter</button></div>
       </div>
     </div>
   </div>

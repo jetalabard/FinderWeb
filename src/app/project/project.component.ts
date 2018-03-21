@@ -45,7 +45,7 @@ export class ProjectComponent implements OnInit {
                   .subscribe(
                     dataPro => {
                       this.project.fillFromJson(JSON.parse(dataPro.toString()));
-                      for(let idPerson of this.project.persons)
+                      for(let idPerson of this.project.collaborator)
                       {
                         this.personService.get(idPerson)
                           .subscribe(
@@ -60,6 +60,7 @@ export class ProjectComponent implements OnInit {
                             }
                           );
                       }
+                      this.changeSelectedPerson(this.persons[0]._id);
 
                     },
                     error => {

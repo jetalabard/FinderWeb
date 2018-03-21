@@ -14,25 +14,49 @@ export class PersonService {
 
   private serverUrl = 'https://murmuring-cove-55676.herokuapp.com';
 
+  data: string[] =   ['',
+    '{"_id": "1","name": "Faure","firstname": "Julie","__v": 2}',
+    '{"_id": "2","name": "Gardo","firstname": "Michel","__v": 2}',
+    '{"_id": "3","name": "Millano","firstname": "Arthur","__v": 2}'
+  ];
 
-  get(id): Observable<Person>
+
+  get(id): Observable<any>
   {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json'
-      }),
-      responseType: 'text' as 'json',
-      withCredentials: true
-    };
 
-    console.log("get person/id");
-    return this.http.get<Person>(this.serverUrl+"/user/"+id, httpOptions)
-      .pipe(
-        tap(data => {
+    return Observable.of(this.data[id]);
 
-        } ),
-        catchError(this.handleError)
-      );
+    // const httpOptions = {
+    //   headers: new HttpHeaders({
+    //     'Content-Type': 'application/json'
+    //   }),
+    //   responseType: 'text' as 'json',
+    //   withCredentials: true
+    // };
+    //
+    // console.log("get person/id");
+    // return this.http.get<Person>(this.serverUrl+"/user/"+id, httpOptions)
+    //   .pipe(
+    //     tap(data => {
+    //
+    //     } ),
+    //     catchError(this.handleError)
+    //   );
+  }
+
+  getAll(): Observable<any>
+  {
+    let persons: string ="[";
+    for(let p of this.data)
+    {
+      if(p != '')
+        persons = persons+p+",";
+    }
+    persons = persons.slice(0,-1)+"]";
+    console.log("persons : ");
+    console.log(persons);
+
+    return Observable.of(persons);
   }
 
 

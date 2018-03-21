@@ -5,16 +5,16 @@
       <h3 style="text-align: center;">{{agency.name}} - {{agency.city}}</h3>
     </div>
     <div style="display: flex; flex-direction: column;flex-wrap: nowrap; border-radius: 20px; border: 1px solid; padding: 10px; text-align: center;border-color: #A5A4A0;">
-      <h4 style="text-decoration: underline">Pôle {{pole.name}} - {{project.name}}</h4>
+      <h4 style="text-decoration: underline">Pôle {{pole.name}} - Projet {{project.name}}</h4>
       <div style="border: 1px solid; border-radius: 10px; padding: 5px; margin: 5px; border-color: #A5A4A0;">
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin scelerisque ante dolor, ac malesuada augue finibus volutpat. Nunc nec arcu eros. Maecenas venenatis nulla in elit tristique, sed consequat odio ultricies. Donec in libero gravida, placerat nisi non, ultricies ante. Aliquam erat volutpat. Quisque id posuere nulla, eget mattis mauris. Sed est nunc, luctus vitae sodales vitae, eleifend sed velit. Curabitur at rhoncus mi. Ut convallis vitae nisl vulputate interdum. Etiam eget rutrum ex. Pellentesque at volutpat dui, nec malesuada velit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis consectetur vel enim eget blandit. Etiam mollis eleifend dapibus. Suspendisse sagittis eu nisl ut aliquet. Vivamus sit amet est dictum, luctus ligula at, rhoncus ipsum.
         </p>
       </div>
-      <div style="margin: 10px;"><button routerLink="/agencyPlan/{{agency.id}}">Plan d'équipe</button></div>
+      <div style="margin: 10px;"><button routerLink="/agencyPlan/{{agency._id}}">Plan d'équipe</button></div>
       <h5>Liste des personnes du projet :</h5>
       <div style="border: solid 1px;border-color: #A5A4A0;">
-        <div *ngFor="let person of persons" (click)="changeSelectedPerson(person.id)" [style.backgroundColor]="getStyle(person.id)">{{person.firstname}} {{person.name}} - {{person.role}}</div>
+        <div *ngFor="let person of persons" (click)="changeSelectedPerson(person._id)" [style.backgroundColor]="getStyle(person._id)">{{person.firstname}} {{person.name}}</div>
       </div>
       <div style="display: flex; flex-direction: column; text-align: center;">
         <div *ngIf="emptyPersons">Il n'y a encore aucunes personnes dans ce projet</div>

@@ -4,11 +4,11 @@
     <div *ngFor="let agency of agencies" style="display: flex; align-items: center; justify-content: space-between; border: 1px solid; padding: 4px; margin: 10px;">
       <div><img src={{agency.logo}} style="width: 100px;"></div>
       <div style="display: flex">
-        <div style="margin: 4px;">{{agency.companyName}}</div>
+        <div style="margin: 4px;">{{agency.name}}</div>
         |
         <div style="margin: 4px;">{{agency.city}}</div>
       </div>
-      <div><button routerLink="/agency/{{agency.id}}">Visiter</button></div>
+      <div><button routerLink="/agency/{{agency._id}}">Visiter</button></div>
     </div>
   </div>
 </div>

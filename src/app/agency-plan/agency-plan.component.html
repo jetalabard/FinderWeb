@@ -19,7 +19,7 @@
       <div style="width: 70%; padding: 20px; display: flex; flex-direction: column; align-items: center;">
         <div style="position: relative;">
           <img src="{{selectedStage.photo}}" style="width: 500px;">
-          <div *ngFor="let marker of selectedStage.objectMarkers" [ngStyle]="{'top.%': marker.posY,'right.%': marker.posX, 'background-color': getInfoMarker(marker)}" style="position: absolute;">
+          <div *ngFor="let marker of selectedStage.objectMarkers" [ngStyle]="{'bottom.%': marker.posY,'left.%': marker.posX, 'background-color': getInfoMarker(marker)}" style="position: absolute;">
             <div *ngIf="selectedMarker == null || selectedMarker._id != marker._id" (click)="changeSelectedMarker(marker)" style="width: 12px; height: 12px; border-radius: 5px;"></div>
             <div [ngStyle]="{'display': getStyleDisplay(marker), 'border-color':getInfoMarker(marker)}" style="min-width: 100px; display: none; margin: 1px; background-color: white;border-radius: 5px;">
               <div style="display: flex; justify-content: flex-end;">

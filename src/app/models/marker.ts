@@ -8,6 +8,7 @@ export class Marker extends Serializable{
   posX: number;
   posY: number;
   object: string;
+  __v: string;
 
   constructor()
   {

@@ -1,8 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import {Agency} from "../models/agency";
 import {Pole} from "../models/pole";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {AuthService} from "../services/auth.service";
+import {PoleService} from "../services/pole.service";
+import {Stage} from "../models/stage";
+import {Marker} from "../models/marker";
+import {AgencyService} from "../services/agency.service";
 
 @Component({
   selector: 'app-activities-poles',
@@ -12,20 +16,47 @@ import {AuthService} from "../services/auth.service";
 export class ActivitiesPolesComponent implements OnInit {
 
   agencyPole: {agency: Agency, poles: Pole[]}[] = [];
-  constructor(private auth : AuthService, private rout : Router) { }
+
+  constructor(private poleService : PoleService, private agencyService : AgencyService, private rout : Router, private route: ActivatedRoute) { }
 
 
-  addPoles()
-  {
-    // this.agencyPole[0] = {"agency": new Agency(1,"Sopra Steria","Clermont-Ferrand",45.5,3),
-    //                       "poles": [new Pole(1,"BI","desc1"),new Pole(2,"RH","desc2")]};
-    //
-    // this.agencyPole[1] = {"agency": new Agency(2,"CGI","Clermont-Ferrand",45.5,3),
-    //   "poles": [new Pole(3,"BI","desc3"),new Pole(4,"Support","desc2")]};
-  }
 
   ngOnInit() {
-    this.addPoles();
+    this.getAgenciesAndPoles()
+  }
+
+  getAgenciesAndPoles()
+  {
+    let agencies: Agency[] = [];
+    this.agencyService.getAll()
+      .subscribe(
+        dataA => {
+          let agency: Agency = new Agency();
+          agencies = agency.getArrayObjFromJson(dataA);
+          for(let a of agencies)
+          {
+            let poles: Pole[] = [];
+            for(let idPole of a.poles)
+            {
+              this.poleService.get(idPole)
+                .subscribe(
+                  dataP => {
+                    let pole: Pole = new Pole();
+                    pole.fillFromJson(JSON.parse(dataP.toString()))
+                    poles.push(pole);
+                  },
+                  error => {
+                    console.log("error");
+                  }
+                );
+            }
+            this.agencyPole.push({"agency":a,"poles":poles});
+          }
+        },
+        error => {
+          console.log("error");
+        }
+      );
   }
 
 }

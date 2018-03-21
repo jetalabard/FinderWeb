@@ -13,8 +13,8 @@ export class Agency extends Serializable {
   photo: string = undefined;
   panorama: string = undefined;
   logo: string = "assets/images/soprasteria.jpeg";
-  latitude: number = 45;
-  longitude: number = 3;
+  latitude: number = 45.8;
+  longitude: number = 3.1;
   country: string = undefined;
   city: string = "Clermont-Ferrand";
   administeredBy: string[] = undefined;
@@ -23,8 +23,8 @@ export class Agency extends Serializable {
   __v: string = undefined;
 
 
-  objectStages: Stage[];
-  objectPoles: Pole[];
+  objectStages: Stage[] = [];
+  objectPoles: Pole[] = [];
 
 
   constructor()

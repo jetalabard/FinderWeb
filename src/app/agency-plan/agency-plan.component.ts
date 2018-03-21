@@ -62,19 +62,23 @@ export class AgencyPlanComponent implements OnInit {
       .subscribe(
         dataA => {
           this.agency.fillFromJson(JSON.parse(dataA.toString()));
+          this.agency.plans = ["1","3","5"];
           for(let idStage of this.agency.plans)
           {
             this.stageService.get(idStage)
               .subscribe(
                 dataS => {
+                  console.log("dataS : ");
+                  console.log(dataS);
                   let stage: Stage = new Stage();
                   stage.fillFromJson(JSON.parse(dataS.toString()))
-
                   for(let idMarker of stage.markers)
                   {
                     this.markerService.get(idMarker)
                       .subscribe(
                         dataM => {
+                          console.log("dataM : ");
+                          console.log(dataM);
                           let marker: Marker = new Marker();
                           marker.fillFromJson(JSON.parse(dataM.toString()))
                           stage.objectMarkers.push(marker);
@@ -93,6 +97,7 @@ export class AgencyPlanComponent implements OnInit {
                 }
               );
           }
+          this.changeSelectedStage(this.agency.objectStages[0]);
 
         },
         error => {
@@ -111,7 +116,7 @@ export class AgencyPlanComponent implements OnInit {
 
   getStyle(stage)
   {
-    if(stage.id == this.selectedStage._id)
+    if(stage._id == this.selectedStage._id)
       return "#ccd5f1";
     else
       return "white";
@@ -132,7 +137,7 @@ export class AgencyPlanComponent implements OnInit {
 
   getInfoMarker(marker, info = "color")
   {
-    switch (marker.id.toString().substring(0,3))
+    switch (marker._id.toString().substring(0,3))
     {
       case "111"://Pole
       {
@@ -156,15 +161,14 @@ export class AgencyPlanComponent implements OnInit {
         else
           return "green";
       }
-      case "444":
+      default:
       {
         if(info == "link")
           return "";
         else
           return "yellow";
       }
-      default:
-        return "purple";
+
     }
   }
 

@@ -38,6 +38,7 @@ export class PoleComponent implements OnInit {
             .subscribe(
               dataP => {
                 this.pole.fillFromJson(JSON.parse(dataP.toString()));
+                this.pole.projects = ['1','2'];
                 for(let idProject of this.pole.projects)
                 {
                   this.projectService.get(idProject)
@@ -53,6 +54,7 @@ export class PoleComponent implements OnInit {
                       }
                     );
                 }
+                this.changeSelectedProject(this.projects[0]._id);
 
               },
               error => {

@@ -13,24 +13,41 @@ export class MarkerService {
 
   private serverUrl = 'https://murmuring-cove-55676.herokuapp.com';
 
-  get(id): Observable<Marker>
+
+  data: {[id: string]: string;} = {
+    "0": '',
+    "1111": '{"_id": "1111","name": "RH","type": "", "posX": "15", "posY": "83", "object": "5ab1ca4b1749b2235890ff37", "__v": 2}',
+    "1112": '{"_id": "1112","name": "Support","type": "", "posX": "35", "posY": "83", "object": "5ab1caa41749b2235890ff3", "__v": 2}',
+    "2221": '{"_id": "2221","name": "PSA","type": "", "posX": "60", "posY": "20", "object": "", "__v": 2}',
+    "2222": '{"_id": "2222","name": "Limagrain","type": "", "posX": "12", "posY": "83", "object": "", "__v": 2}',
+    "3331": '{"_id": "3331","name": "Bureau Michel","type": "", "posX": "56", "posY": "83", "object": "", "__v": 2}',
+    "4441": '{"_id": "4441","name": "WC","type": "", "posX": "74", "posY": "83", "object": "", "__v": 2}',
+    "4442": '{"_id": "4442","name": "Salle de réunion","type": "", "posX": "20", "posY": "20", "object": "", "__v": 2}'
+  };
+
+
+  get(id): Observable<any>
   {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json'
-      }),
-      responseType: 'text' as 'json',
-      withCredentials: true
-    };
 
-    console.log("get marker/id");
-    return this.http.get<Marker>(this.serverUrl+"/label/"+id, httpOptions)
-      .pipe(
-        tap(data => {
+    return Observable.of(this.data[id]);
 
-        } ),
-        catchError(this.handleError)
-      );
+
+    // const httpOptions = {
+    //   headers: new HttpHeaders({
+    //     'Content-Type': 'application/json'
+    //   }),
+    //   responseType: 'text' as 'json',
+    //   withCredentials: true
+    // };
+    //
+    // console.log("get marker/id");
+    // return this.http.get<Marker>(this.serverUrl+"/label/"+id, httpOptions)
+    //   .pipe(
+    //     tap(data => {
+    //
+    //     } ),
+    //     catchError(this.handleError)
+    //   );
 
   }
 

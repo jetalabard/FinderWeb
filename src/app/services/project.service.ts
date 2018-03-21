@@ -14,25 +14,32 @@ export class ProjectService {
 
   private serverUrl = 'https://murmuring-cove-55676.herokuapp.com';
 
+  data: string[] =   ['',
+    '{"_id": "1","collaborator": ["1","2"],"name": "PSA","photo": "","__v": 2}',
+    '{"_id": "2","collaborator": ["1","3"],"name": "Limagrain","photo": "","__v": 2}'
+  ];
 
-  get(id): Observable<Project>
+
+  get(id): Observable<any>
   {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json'
-      }),
-      responseType: 'text' as 'json',
-      withCredentials: true
-    };
+    return Observable.of(this.data[id]);
 
-    console.log("get project/id");
-    return this.http.get<Project>(this.serverUrl+"/project/"+id, httpOptions)
-      .pipe(
-        tap(data => {
-
-        } ),
-        catchError(this.handleError)
-      );
+    // const httpOptions = {
+    //   headers: new HttpHeaders({
+    //     'Content-Type': 'application/json'
+    //   }),
+    //   responseType: 'text' as 'json',
+    //   withCredentials: true
+    // };
+    //
+    // console.log("get project/id");
+    // return this.http.get<Project>(this.serverUrl+"/project/"+id, httpOptions)
+    //   .pipe(
+    //     tap(data => {
+    //
+    //     } ),
+    //     catchError(this.handleError)
+    //   );
   }
 
 
