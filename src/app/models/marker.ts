@@ -1,18 +1,17 @@
-export class Marker {
+import {Serializable} from "./serializable";
 
-  id: number;
+export class Marker extends Serializable{
+
+  _id: string;
   name: string;
-  x: number;
-  y: number;
-  idLink: number;
+  type: string;
+  posX: number;
+  posY: number;
+  object: string;
 
-  constructor(id, name, x, y, idLink = -1)
+  constructor()
   {
-    this.id = id;
-    this.name = name;
-    this.x = x;
-    this.y = y;
-    this.idLink = idLink;
+    super();
   }
 
 

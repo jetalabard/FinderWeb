@@ -3,8 +3,12 @@ import {Pole} from "../models/pole";
 import {AuthService} from "../services/auth.service";
 import {Agency} from "../models/agency";
 import {Project} from "../models/project";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {Person} from "../models/person";
+import {AgencyService} from "../services/agency.service";
+import {ProjectService} from "../services/project.service";
+import {PoleService} from "../services/pole.service";
+import {PersonService} from "../services/person.service";
 
 @Component({
   selector: 'app-project',
@@ -13,31 +17,69 @@ import {Person} from "../models/person";
 })
 export class ProjectComponent implements OnInit {
 
-  agency: Agency;
-  pole: Pole;
-  project: Project;
+  agency: Agency = new Agency();
+  pole: Pole = new Pole();
+  project: Project = new Project();
   persons: Person[] = [];
   selectedPersonId: number;
-  constructor(private auth : AuthService, private rout : Router) { }
+  emptyPersons: boolean = true;
 
-
-  addAgencyPoleProjectPersons()
-  {
-    this.agency = new Agency(1,"Sopra Steria","Clermont-Ferrand",45.5,3);
-    this.pole = new Pole(1,"RH","desc1");
-    this.project = new Project(1,"Limagrain");
-
-    this.persons.push(new Person(1,"Dupont", "Thierry", "Directeur de projet"));
-    this.persons.push(new Person(2,"Kang", "Maxime", "Collaborateur"));
-    this.persons.push(new Person(3,"Edouard", "Jean-Philippe", "Collaborateur"));
-    this.persons.push(new Person(4,"Martin", "Martin", "Collaborateur"));
-
-  }
+  constructor(private personService : PersonService, private projectService : ProjectService, private poleService : PoleService, private agencyService : AgencyService, private rout : Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.addAgencyPoleProjectPersons();
-    this.changeSelectedPerson(this.persons[0].id);
+    this.route.params.subscribe( params => this.getAgencyAndPoleAndProjectAndPersons(params.idAgency, params.idPole, params.idProject));
   }
+
+
+  getAgencyAndPoleAndProjectAndPersons(idAgency, idPole, idProject)
+  {
+    this.agencyService.get(idAgency)
+      .subscribe(
+        dataA => {
+          this.agency.fillFromJson(JSON.parse(dataA.toString()));
+          this.poleService.get(idPole)
+            .subscribe(
+              dataP => {
+                this.pole.fillFromJson(JSON.parse(dataP.toString()));
+                this.projectService.get(idProject)
+                  .subscribe(
+                    dataPro => {
+                      this.project.fillFromJson(JSON.parse(dataPro.toString()));
+                      for(let idPerson of this.project.persons)
+                      {
+                        this.personService.get(idPerson)
+                          .subscribe(
+                            dataPro => {
+                              let person: Person = new Person();
+                              person.fillFromJson(JSON.parse(dataPro.toString()))
+                              this.persons.push(person);
+                              this.emptyPersons = false;
+                            },
+                            error => {
+                              console.log("error");
+                            }
+                          );
+                      }
+
+                    },
+                    error => {
+                      console.log("error");
+                    }
+                  );
+
+              },
+              error => {
+                console.log("error");
+              }
+            );
+
+        },
+        error => {
+          console.log("error");
+        }
+      );
+  }
+
 
   changeSelectedPerson(id)
   {

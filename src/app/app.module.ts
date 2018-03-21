@@ -23,6 +23,10 @@ import { ActivitiesPolesComponent } from './activities-poles/activities-poles.co
 import { CollaboratorComponent } from './collaborator/collaborator.component';
 import { MyAccountComponent } from './my-account/my-account.component';
 import { AgencyPlanComponent } from './agency-plan/agency-plan.component';
+import {AgencyService} from "./services/agency.service";
+import {PoleService} from "./services/pole.service";
+import {ProjectService} from "./services/project.service";
+import {PersonService} from "./services/person.service";
 
 
 @NgModule({
@@ -51,7 +55,13 @@ import { AgencyPlanComponent } from './agency-plan/agency-plan.component';
     HttpClientModule,
     FormsModule
   ],
-  providers: [AuthService],
+  providers: [
+    AuthService,
+    AgencyService,
+    PoleService,
+    ProjectService,
+    PersonService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

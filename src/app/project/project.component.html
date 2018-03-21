@@ -2,7 +2,7 @@
   <div style="display: flex; flex-direction: column; min-width: 60%; max-width: 80%;">
     <div>
       <img src={{agency.logo}} style="position: absolute; float: left;width: 60px;margin-bottom: 5px;">
-      <h3 style="text-align: center;">{{agency.companyName}} - {{agency.city}}</h3>
+      <h3 style="text-align: center;">{{agency.name}} - {{agency.city}}</h3>
     </div>
     <div style="display: flex; flex-direction: column;flex-wrap: nowrap; border-radius: 20px; border: 1px solid; padding: 10px; text-align: center;border-color: #A5A4A0;">
       <h4 style="text-decoration: underline">Pôle {{pole.name}} - {{project.name}}</h4>
@@ -16,7 +16,10 @@
       <div style="border: solid 1px;border-color: #A5A4A0;">
         <div *ngFor="let person of persons" (click)="changeSelectedPerson(person.id)" [style.backgroundColor]="getStyle(person.id)">{{person.firstname}} {{person.name}} - {{person.role}}</div>
       </div>
-        <div style="margin: 10px;"><button routerLink="/person/{{selectedPersonId}}">Voir la personne</button></div>
+      <div style="display: flex; flex-direction: column; text-align: center;">
+        <div *ngIf="emptyPersons">Il n'y a encore aucunes personnes dans ce projet</div>
+        <div *ngIf="!emptyPersons" style="margin: 10px;"><button routerLink="/person/{{agency._id}}/{{selectedPersonId}}">Voir la personne</button></div>
+      </div>
     </div>
   </div>
 </div>

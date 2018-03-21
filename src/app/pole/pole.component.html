@@ -2,7 +2,7 @@
   <div style="display: flex; flex-direction: column; min-width: 60%; max-width: 80%;">
     <div>
       <img src={{agency.logo}} style="position: absolute; float: left;width: 60px;margin-bottom: 5px;">
-      <h3 style="text-align: center;">{{agency.companyName}} - {{agency.city}}</h3>
+      <h3 style="text-align: center;">{{agency.name}} - {{agency.city}}</h3>
     </div>
     <div style="display: flex; flex-direction: column;flex-wrap: nowrap; border-radius: 20px; border: 1px solid; padding: 10px; text-align: center;border-color: #A5A4A0;">
       <h4 style="text-decoration: underline">Pôle {{pole.name}}</h4>
@@ -13,10 +13,11 @@
       </div>
       <h5>Liste des projets du pôle :</h5>
       <div style="border: solid 1px;border-color: #A5A4A0;">
-        <div *ngFor="let project of projects" (click)="changeSelectedProject(project.id)" [style.backgroundColor]="getStyle(project.id)">Pôle {{project.name}}</div>
+        <div *ngFor="let project of projects" (click)="changeSelectedProject(project.id)" [style.backgroundColor]="getStyle(project._id)">Pôle {{project.name}}</div>
       </div>
       <div style="display: flex; flex-direction: column; text-align: center;">
-        <div style="margin: 10px;"><button routerLink="/project/{{selectedProjectId}}">Voir le projet</button></div>
+        <div *ngIf="emptyProjects">Il n'existe encore aucun projet dans ce pôle</div>
+        <div *ngIf="!emptyProjects" style="margin: 10px;"><button routerLink="/project/{{agency._id}}/{{pole._id}}/{{selectedProjectId}}">Voir le projet</button></div>
       </div>
     </div>
   </div>

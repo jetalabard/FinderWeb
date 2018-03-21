@@ -1,12 +1,16 @@
-export class Project {
+import {Serializable} from "./serializable";
 
-  id: number;
+export class Project extends Serializable{
+
+  _id: number;
   name: string;
+  photo: string;
+  collaborator: string[];
+  persons: string[];
 
-  constructor(id, name)
+  constructor()
   {
-    this.id = id;
-    this.name = name;
+    super();
   }
 
 }

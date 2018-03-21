@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import {Person} from "../models/person";
 import {Agency} from "../models/agency";
+import {AgencyService} from "../services/agency.service";
+import {AuthService} from "../services/auth.service";
+import {ActivatedRoute, Router} from "@angular/router";
+import {PersonService} from "../services/person.service";
+import {Pole} from "../models/pole";
 
 @Component({
   selector: 'app-person',
@@ -9,14 +14,37 @@ import {Agency} from "../models/agency";
 })
 export class PersonComponent implements OnInit {
 
-  constructor() { }
+  constructor(private agencyService : AgencyService, private personService : PersonService, private rout : Router, private route: ActivatedRoute) { }
 
-  agency: Agency;
-  person: Person;
+  agency: Agency = new Agency();
+  person: Person = new Person();
 
   ngOnInit() {
-    this.agency = new Agency(1,"Sopra Steria","Clermont-Ferrand",45.5,3);
-    this.person = new Person(1,"Dupont", "Thierry", "Directeur de projet");
+    this.route.params.subscribe( params => this.getAgencyAndPoles(params.idAgency, params.idPerson));
   }
+
+  getAgencyAndPoles(idAgency, idPerson)
+  {
+    this.agencyService.get(idAgency)
+      .subscribe(
+        dataA => {
+          this.agency.fillFromJson(JSON.parse(dataA.toString()));
+          this.personService.get(idPerson)
+            .subscribe(
+              dataP => {
+                this.person.fillFromJson(JSON.parse(dataP.toString()));
+              },
+              error => {
+                console.log("error");
+              }
+            );
+
+        },
+        error => {
+          console.log("error");
+        }
+      );
+  }
+
 
 }

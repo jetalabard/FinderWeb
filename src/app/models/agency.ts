@@ -1,25 +1,36 @@
 import {Stage} from "./stage";
+import {Serializable} from "./serializable";
+import {Pole} from "./pole";
 
-export class Agency {
 
-  id: number;
-  companyName: string;
-  city: string;
+export class Agency extends Serializable {
+
+
+  _id: string = undefined;
+  name: string = undefined;
+  fonction: string = undefined;
+  intitule: string = undefined;
+  photo: string = undefined;
+  panorama: string = undefined;
   logo: string = "assets/images/soprasteria.jpeg";
-  lat: number;
-  long: number;
-  poles: number[];
-  stages: Stage[] = [];
+  latitude: number = 45;
+  longitude: number = 3;
+  country: string = undefined;
+  city: string = "Clermont-Ferrand";
+  administeredBy: string[] = undefined;
+  poles: string[] = undefined;
+  plans: string[] = undefined;
+  __v: string = undefined;
 
-  constructor(id, companyName, city, lat, long)
+
+  objectStages: Stage[];
+  objectPoles: Pole[];
+
+
+  constructor()
   {
-    this.id = id;
-    this.companyName = companyName;
-    this.city = city;
-    //this.logo = logo;
-    this.lat = lat;
-    this.long = long;
-    this.poles = [1,2,3,4];
+    super();
   }
+
 
 }

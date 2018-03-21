@@ -1,7 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import { } from '@types/googlemaps';
-import {forEach} from "@angular/router/src/utils/collection";
 import {Agency} from "../models/agency";
+import {AgencyService} from "../services/agency.service";
 
 @Component({
   selector: 'app-map',
@@ -15,20 +15,13 @@ export class MapComponent implements OnInit {
 
   agencies: Agency[] = [];
 
-  constructor() { }
-
-  addAgencies()
-  {
-    this.agencies.push(new Agency(1,"Sopra Steria","Clermont-Ferrand",45.5,3));
-    this.agencies.push(new Agency(2,"Sopra Steria","Nantes",47,0));
-    this.agencies.push(new Agency(3,"CGI","Clermont-Ferrand",45,3));
-    this.agencies.push(new Agency(4,"Capgemini","Clermont-Ferrand",46,3));
-    this.agencies.push(new Agency(5,"Capgemini","Nantes",47.5,0.01));
-  }
+  constructor(private agencyService: AgencyService) { }
 
 
   ngOnInit() {
-    this.addAgencies();
+
+    this.getAllAgencies();
+
     let mapProp = {
       center: new google.maps.LatLng(47, 0),
       zoom: 5,
@@ -47,17 +40,34 @@ export class MapComponent implements OnInit {
     for (let a of this.agencies)
     {
       let marker = new google.maps.Marker({
-        position: {lat: a.lat, lng: a.long},
+        position: {lat: a.latitude, lng: a.longitude},
         map: this.map,
-        title: a.companyName
+        title: a.name
       });
       let infowindow = new google.maps.InfoWindow({
-        content: a.companyName
+        content: a.name
       });
       marker.addListener('click', function () {
         infowindow.open(this.map, marker);
       });
     }
   }
+
+  getAllAgencies()
+  {
+    this.agencyService.getAll()
+      .subscribe(
+        data => {
+          let agency: Agency = new Agency();
+         this.agencies = agency.getArrayObjFromJson(data);
+          console.log("agencies : ");
+          console.log(this.agencies);
+        },
+        error => {
+          console.log("error");
+        }
+      );
+  }
+
 
 }

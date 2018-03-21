@@ -17,16 +17,15 @@ export class ActivitiesPolesComponent implements OnInit {
 
   addPoles()
   {
-    this.agencyPole[0] = {"agency": new Agency(1,"Sopra Steria","Clermont-Ferrand",45.5,3),
-                          "poles": [new Pole(1,"BI","desc1"),new Pole(2,"RH","desc2")]};
-
-    this.agencyPole[1] = {"agency": new Agency(2,"CGI","Clermont-Ferrand",45.5,3),
-      "poles": [new Pole(3,"BI","desc3"),new Pole(4,"Support","desc2")]};
+    // this.agencyPole[0] = {"agency": new Agency(1,"Sopra Steria","Clermont-Ferrand",45.5,3),
+    //                       "poles": [new Pole(1,"BI","desc1"),new Pole(2,"RH","desc2")]};
+    //
+    // this.agencyPole[1] = {"agency": new Agency(2,"CGI","Clermont-Ferrand",45.5,3),
+    //   "poles": [new Pole(3,"BI","desc3"),new Pole(4,"Support","desc2")]};
   }
 
   ngOnInit() {
     this.addPoles();
-
   }
 
 }

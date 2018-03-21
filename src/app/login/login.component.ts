@@ -11,18 +11,14 @@ export class LoginComponent implements OnInit {
 
   public mail: string;
   public password: string;
+  message: string ="";
 
   constructor(private auth : AuthService, private rout : Router) { }
 
   ngOnInit() {
     console.log("checkIsLog");
-    if(this.isLogged())
+    if(this.auth.isLogged())
       this.rout.navigate(['/map']);
-  }
-
-  isLogged()
-  {
-    return false;
   }
 
   login()
@@ -34,9 +30,11 @@ export class LoginComponent implements OnInit {
         data => {
           this.rout.navigate(['/map']);
           console.log("log ok");
+        },
+        error => {
+          this.message = JSON.parse(error.error)['message'];
         }
       );
-
   }
 
 }

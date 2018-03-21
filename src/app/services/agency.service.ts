@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders} from "@angular/common/http";
 import {catchError, tap} from "rxjs/operators";
-import { HttpErrorResponse} from "@angular/common/http";
-import { ErrorObservable} from "rxjs/observable/ErrorObservable";
+import {HttpClient, HttpErrorResponse, HttpHeaders} from "@angular/common/http";
+import {ErrorObservable} from "rxjs/observable/ErrorObservable";
+import {Agency} from "../models/agency";
 import {Observable} from "rxjs/Observable";
-
+import {Pole} from "../models/pole";
 
 @Injectable()
-export class AuthService {
+export class AgencyService {
+
 
   constructor(private http: HttpClient) { }
 
@@ -15,7 +16,7 @@ export class AuthService {
 
 
 
-  login(username,password)
+  getAll(): Observable<Agency[]>
   {
     const httpOptions = {
       headers: new HttpHeaders({
@@ -25,19 +26,18 @@ export class AuthService {
       withCredentials: true
     };
 
-    return this.http.post(this.serverUrl+"/login", {username:username, password:password}, httpOptions)
+    return this.http.get<Agency[]>(this.serverUrl+"/agency", httpOptions)
       .pipe(
+
         tap(data => {
-          console.log(data);
-          localStorage.setItem('currentUser',username);
-        }),
+
+        } ),
         catchError(this.handleError)
       );
 
   }
 
-
-  logout()
+  get(id): Observable<Agency>
   {
     const httpOptions = {
       headers: new HttpHeaders({
@@ -47,33 +47,37 @@ export class AuthService {
       withCredentials: true
     };
 
-    console.log("try logout");
-    return this.http.get(this.serverUrl+"/logout", httpOptions)
+    console.log("get agency/id");
+    return this.http.get<Agency>(this.serverUrl+"/agency/"+id, httpOptions)
       .pipe(
-        tap(data =>
-          {
-            localStorage.removeItem('currentUser');
-            console.log("currentUser removed from logout ok");
-          }),
-          catchError(this.handleError)
+        tap(data => {
+
+        } ),
+        catchError(this.handleError)
       );
+
   }
 
-
-  isLogged()
+  getPoles(id): Observable<Pole[]>
   {
-    if(localStorage.getItem("currentUser") === null)
-      return false;
-    else
-      return true;
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      }),
+      responseType: 'text' as 'json',
+      withCredentials: true
+    };
+
+    console.log("get agency/id/pole");
+    return this.http.get<Pole[]>(this.serverUrl+"/agency/"+id+"/poles", httpOptions)
+      .pipe(
+        tap(data => {
+
+        } ),
+        catchError(this.handleError)
+      );
+
   }
-
-  isAdmin()
-  {
-    return true;
-  }
-
-
 
 
 
@@ -88,4 +92,5 @@ export class AuthService {
     }
     return new ErrorObservable(error);
   };
+
 }

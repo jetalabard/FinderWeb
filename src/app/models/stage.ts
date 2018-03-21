@@ -1,18 +1,21 @@
 import {Marker} from "./marker";
+import {Serializable} from "./serializable";
 
-export class Stage {
+export class Stage extends Serializable{
 
-  id: number;
+  _id: string;
   name: string;
-  picture: string;
-  markers: Marker[] = [];
+  photo: string;
+  __v: string;
+  markers: string[];
 
 
-  constructor(id, name)
+  objectMarkers: Marker[] = [];
+
+
+  constructor()
   {
-    this.id = id;
-    this.name = name;
-    this.picture = "https://s-i.huffpost.com/gen/606390/thumbs/o-BUREAU-SARKOZY-570.jpg?1";
+    super();
   }
 
 

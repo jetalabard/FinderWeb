@@ -2,8 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import {Pole} from "../models/pole";
 import {AuthService} from "../services/auth.service";
 import {Agency} from "../models/agency";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {Project} from "../models/project";
+import {AgencyService} from "../services/agency.service";
+import {PoleService} from "../services/pole.service";
+import {ProjectService} from "../services/project.service";
 
 @Component({
   selector: 'app-pole',
@@ -12,29 +15,58 @@ import {Project} from "../models/project";
 })
 export class PoleComponent implements OnInit {
 
-  agency: Agency;
-  pole: Pole;
+  agency: Agency = new Agency();
+  pole: Pole = new Pole();
   projects: Project[] = [];
   selectedProjectId: number;
-  constructor(private auth : AuthService, private rout : Router) { }
+  emptyProjects: boolean = true;
 
-
-  addAgencyPoleProjects()
-  {
-    this.agency = new Agency(1,"Sopra Steria","Clermont-Ferrand",45.5,3);
-    this.pole = new Pole(1,"RH","desc1");
-
-    this.projects.push(new Project(1,"Limagrain"));
-    this.projects.push(new Project(2,"Inserm"));
-    this.projects.push(new Project(3,"Michelin"));
-    this.projects.push(new Project(4,"PSA"));
-
-  }
+  constructor(private projectService : ProjectService, private poleService : PoleService, private agencyService : AgencyService, private rout : Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.addAgencyPoleProjects();
-    this.changeSelectedProject(this.projects[0].id);
+    this.route.params.subscribe( params => this.getAgencyAndPoleAndProjects(params.idAgency, params.idPole));
   }
+
+
+  getAgencyAndPoleAndProjects(idAgency, idPole)
+  {
+    this.agencyService.get(idAgency)
+      .subscribe(
+        dataA => {
+          this.agency.fillFromJson(JSON.parse(dataA.toString()));
+          this.poleService.get(idPole)
+            .subscribe(
+              dataP => {
+                this.pole.fillFromJson(JSON.parse(dataP.toString()));
+                for(let idProject of this.pole.projects)
+                {
+                  this.projectService.get(idProject)
+                    .subscribe(
+                      dataP => {
+                        let project: Project = new Project();
+                        project.fillFromJson(JSON.parse(dataP.toString()))
+                        this.projects.push(project);
+                        this.emptyProjects = false;
+                      },
+                      error => {
+                        console.log("error");
+                      }
+                    );
+                }
+
+              },
+              error => {
+                console.log("error");
+              }
+            );
+
+        },
+        error => {
+          console.log("error");
+        }
+      );
+  }
+
 
   changeSelectedProject(id)
   {

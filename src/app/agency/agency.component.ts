@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {Agency} from "../models/agency";
-import {Router} from "@angular/router";
+import {ActivatedRoute, ParamMap, Router} from "@angular/router";
 import {AuthService} from "../services/auth.service";
+import {AgencyService} from "../services/agency.service";
 
 @Component({
   selector: 'app-agency',
@@ -10,26 +11,16 @@ import {AuthService} from "../services/auth.service";
 })
 export class AgencyComponent implements OnInit {
 
-  agency: Agency;
-  agencies: Agency[] = [];
+  agency: Agency = new Agency();
   isAdmin: boolean = false;
-  constructor(private auth : AuthService, private rout : Router) { }
 
-
-  addAgencies()
-  {
-    this.agencies.push(new Agency(1,"Sopra Steria","Clermont-Ferrand",45.5,3));
-    this.agencies.push(new Agency(2,"Sopra Steria","Nantes",47,0));
-    this.agencies.push(new Agency(3,"CGI","Clermont-Ferrand",45,3));
-    this.agencies.push(new Agency(4,"Capgemini","Clermont-Ferrand",46,3));
-    this.agencies.push(new Agency(5,"Capgemini","Nantes",47.5,0.01));
-  }
+  constructor(private agencyService : AgencyService, private auth : AuthService, private rout : Router, private route: ActivatedRoute) { }
 
 
 
   ngOnInit() {
-    this.addAgencies();
-    this.agency = this.agencies[0];
+    this.route.params.subscribe( params => this.getAgency(params.id));
+
     this.isAdmin = this.auth.isAdmin();
   }
 
@@ -37,6 +28,22 @@ export class AgencyComponent implements OnInit {
   {
     //add favorite
     this.rout.navigate(['/myAgencies']);
+  }
+
+
+  getAgency(id)
+  {
+    this.agencyService.get(id)
+      .subscribe(
+        data => {
+          this.agency.fillFromJson(JSON.parse(data.toString()));
+          console.log("agency : ");
+          console.log(this.agency);
+        },
+        error => {
+          console.log("error");
+        }
+      );
   }
 
 }

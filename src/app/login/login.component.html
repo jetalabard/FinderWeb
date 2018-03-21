@@ -5,8 +5,9 @@
     </div>
     <input type="text" placeholder="Email" [(ngModel)]="mail">
     <br>
-    <input type="text" placeholder="Mot de passe" [(ngModel)]="password">
+    <input type="password" placeholder="Mot de passe" [(ngModel)]="password">
     <br>
+    <div style="color: red; margin: 5px;">{{message}}</div>
     <button (click)="login()">Connexion</button>
     <br>
     <a routerLink="/lostPassword" style="text-decoration: underline;">Mot de passe oublié ?</a>

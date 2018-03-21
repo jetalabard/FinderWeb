@@ -2,12 +2,12 @@
   <div style="display: flex; flex-direction: column; min-width: 60%; max-width: 80%;">
     <div>
       <img src={{agency.logo}} style="position: absolute; float: left;width: 60px;margin-bottom: 5px;">
-      <h2 style="text-align: center;">{{agency.companyName}} - {{agency.city}}</h2>
+      <h2 style="text-align: center;">{{agency.name}} - {{agency.city}}</h2>
     </div>
     <div style="display: flex; flex-direction: column;flex-wrap: nowrap; border-radius: 20px; border: 1px solid; padding: 10px;border-color: #A5A4A0;">
       <div style="display: flex; justify-content: space-between;">
         <div (click)="addFavorites()"><img src="https://killmeiamugly.files.wordpress.com/2017/03/star-1915449_12803.png?w=350" style="width: 30px;"></div>
-        <div *ngIf="isAdmin" routerLink="/adminAgency/{{agency.id}}"><img src="https://image.freepik.com/icones-gratuites/forme-noire-engrenage_318-50714.jpg" style="width: 30px;"></div>
+        <div *ngIf="isAdmin" routerLink="/adminAgency/{{agency._id}}"><img src="https://image.freepik.com/icones-gratuites/forme-noire-engrenage_318-50714.jpg" style="width: 30px;"></div>
       </div>
       <div style="display: flex; flex-direction: column; align-items: center">
         <img src="http://www.iresco.fr/wp-content/uploads/2016/06/tormans-geel1-1024x576.jpg" style="width: 300px;">
@@ -18,8 +18,8 @@
         </p>
       </div>
       <div style="display: flex; flex-direction: column; text-align: center;">
-        <div style="margin: 10px;"><button routerLink="/agencyPlan/{{agency.id}}">Accéder aux plans</button></div>
-        <div style="margin: 10px;"><button routerLink="/agencyPoles/{{agency.id}}">Voir les pôles d'activités</button></div>
+        <div style="margin: 10px;"><button routerLink="/agencyPlan/{{agency._id}}">Accéder aux plans</button></div>
+        <div style="margin: 10px;"><button routerLink="/agencyPoles/{{agency._id}}">Voir les pôles d'activités</button></div>
       </div>
     </div>
   </div>

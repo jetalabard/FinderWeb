@@ -1,14 +1,18 @@
-export class Pole {
+import {Serializable} from "./serializable";
 
-  id: number;
+export class Pole extends Serializable{
+
+  _id: string;
+  administeredBy: string[];
   name: string;
   description: string;
+  photo: string;
+  projects: string[];
+  __v: string;
 
-  constructor(id, name, desccription)
+  constructor()
   {
-    this.id = id;
-    this.name = name;
-    this.description = desccription;
+    super();
   }
 
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService} from "../services/auth.service";
+import { Router} from "@angular/router";
 
 @Component({
   selector: 'app-menu-bar',
@@ -8,13 +9,33 @@ import { AuthService} from "../services/auth.service";
 })
 export class MenuBarComponent implements OnInit {
 
-  constructor(private auth : AuthService) { }
-
-  isLogged: boolean = false;
+  constructor(private auth : AuthService, private rout : Router) { }
 
   ngOnInit() {
+  }
+
+  logout()
+  {
+    this.auth.logout()
+      .subscribe(
+        data => {
+          this.rout.navigate(['/login']);
+          console.log("logout ok");
+        },
+        error => {
+          localStorage.removeItem('currentUser');
+          console.log("currentUser removed from error");
+          this.rout.navigate(['/login']);
+        }
+      );
+  }
+
+  isLogged()
+  {
     if(this.auth.isLogged())
-      this.isLogged = true;
+      return true;
+    else
+      return false;
   }
 
 }
