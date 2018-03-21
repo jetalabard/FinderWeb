@@ -32,7 +32,6 @@ export class MapComponent implements OnInit {
       minZoom: 2
     };
     this.map = new google.maps.Map(this.gmapElement.nativeElement, mapProp);
-    this.addMarkers();
   }
 
   addMarkers()
@@ -60,8 +59,7 @@ export class MapComponent implements OnInit {
         data => {
           let agency: Agency = new Agency();
          this.agencies = agency.getArrayObjFromJson(data);
-          console.log("agencies : ");
-          console.log(this.agencies);
+          this.addMarkers();
         },
         error => {
           console.log("error");

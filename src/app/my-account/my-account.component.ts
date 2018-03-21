@@ -9,13 +9,14 @@ import {FormsModule} from "@angular/forms";
 })
 export class MyAccountComponent implements OnInit {
 
-  person: Person = new Person(1,"Faure","Michel","Directeur Commercial");
+  person: Person = new Person();
   oldPassword: string = "";
   newPassword: string = "";
   newPasswordConfirm: string = "";
-  newMail: string = this.person.mail;
+  newMail: string = this.person.email;
   message: string = "";
   colorMessage: string = "red";
+
 
 
   constructor() { }
@@ -48,7 +49,7 @@ export class MyAccountComponent implements OnInit {
   {
     console.log("cancel");
     this.clearPasswords();
-    this.newMail = this.person.mail;
+    this.newMail = this.person.email;
     this.message = "Modifications annulées";
     this.colorMessage = "blue";
     console.log("message : "+this.message);

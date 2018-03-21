@@ -16,7 +16,7 @@ import {StageService} from "../services/stage.service";
 })
 export class AgencyPlanComponent implements OnInit {
 
-  agency: Agency;
+  agency: Agency = new Agency();
   selectedStage: Stage;
   selectedMarker: Marker = null;
 

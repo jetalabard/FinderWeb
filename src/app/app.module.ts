@@ -27,6 +27,8 @@ import {AgencyService} from "./services/agency.service";
 import {PoleService} from "./services/pole.service";
 import {ProjectService} from "./services/project.service";
 import {PersonService} from "./services/person.service";
+import {StageService} from "./services/stage.service";
+import {MarkerService} from "./services/marker.service";
 
 
 @NgModule({
@@ -60,7 +62,9 @@ import {PersonService} from "./services/person.service";
     AgencyService,
     PoleService,
     ProjectService,
-    PersonService
+    PersonService,
+    StageService,
+    MarkerService
   ],
   bootstrap: [AppComponent]
 })

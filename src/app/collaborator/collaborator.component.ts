@@ -15,10 +15,10 @@ export class CollaboratorComponent implements OnInit {
 
   addPersons()
   {
-    this.persons.push(new Person(1,"Dupont", "Thierry", "Directeur de projet"));
-    this.persons.push(new Person(2,"Kang", "Maxime", "Collaborateur"));
-    this.persons.push(new Person(3,"Edouard", "Jean-Philippe", "Collaborateur"));
-    this.persons.push(new Person(4,"Martin", "Martin", "Collaborateur"));
+    this.persons.push(new Person());
+    this.persons.push(new Person());
+    this.persons.push(new Person());
+    this.persons.push(new Person());
   }
   ngOnInit() {
     this.addPersons();
